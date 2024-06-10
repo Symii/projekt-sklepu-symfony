@@ -1,0 +1,23 @@
+{# templates/order_confirmation.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Potwierdzenie zamówienia{% endblock %}
+
+{% block body %}
+<div class="container" style="margin-top: 50px">
+    <h1>Dziękujemy za złożenie zamówienia!</h1>
+    <p>Twoje zamówienie zostało pomyślnie złożone. Wkrótce otrzymasz dalsze informacje na podany adres e-mail.</p>
+
+    <h2>Szczegóły zamówienia</h2>
+    <ul>
+        {% for product in order.products %}    
+            <li><img src="{{product.imageUrl}}" width="100px">{{ product.name }} - {{ product.price }} PLN</li>
+        {% endfor %}
+    </ul>
+
+    <p>Łączna kwota: {{ order.total }} PLN</p>
+
+    <a href="{{ path('product_list') }}" class="btn btn-primary">Powrót do strony głównej</a>
+</div>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Product Details{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h1>Szczegoly produktu</h1>
+        <img src="{{product.imageUrl}}" height="200px">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{ product.name }}</h5>
+                <p class="card-text"><strong>Description:</strong> {{ product.description }}</p>
+                <p class="card-text"><strong>Price:</strong> {{ product.price }}</p>
+                <p class="card-text"><strong>Stock:</strong> {{ product.stock }}</p>
+                <p class="card-text"><strong>Category:</strong> {{ product.category.name }}</p>
+                <a href="{{ path('cart_add', {id: product.id}) }}" class="btn btn-success">Dodaj do koszyka</a>
+                <a href="{{ path('product_list') }}" class="btn btn-secondary">Back to list</a>
+            </div>
+        </div>
+    </div>
+    <div style="height:200px; width: 100%;"></div>
+{% endblock %}

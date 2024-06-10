@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Product List{% endblock %}
+
+{% block body %}
+{% for type, messages in app.flashes %}
+    {% for message in messages %}
+        <div class="alert alert-{{ type }} alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    {% endfor %}
+{% endfor %}
+    <h1>Lista produktow</h1>
+
+    {% if products is not empty %}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col">Nazwa produktu</th>
+                    <th scope="col">Cena</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for product in products %}
+                    <tr>
+                        <td><img width="auto" height="100px" src="{{ product.imageUrl }}"></td>
+                        <td>{{ product.name }}</td>
+                        <td>{{ product.price }} zl</td>
+                        <td><a class="btn btn-primary" href="{{ path('product_details', {id: product.id}) }}">Wyswietl szczegoly</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No products found.</p>
+    {% endif %}
+{% endblock %}

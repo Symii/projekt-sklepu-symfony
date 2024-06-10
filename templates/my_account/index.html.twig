@@ -1,0 +1,23 @@
+{# templates/my_account/index.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Zmień Hasło{% endblock %}
+
+{% block body %}
+{% for type, messages in app.flashes %}
+    {% for message in messages %}
+        <div class="alert alert-{{ type }} alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    {% endfor %}
+{% endfor %}
+    <h1>Zmień Hasło</h1>
+    <form method="post" action="{{ path('change_password') }}">
+        <label for="new_password">Nowe Hasło:</label>
+        <input type="password" id="new_password" name="new_password">
+        <button type="submit">Zmień Hasło</button>
+    </form>
+{% endblock %}
